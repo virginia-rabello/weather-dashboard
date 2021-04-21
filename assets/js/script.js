@@ -1,13 +1,15 @@
+var key = config.key;
+var url = config.url;
 fetch("https://yahoo-weather5.p.rapidapi.com/weather?location=sunnyvale&format=json&u=f", {
 	"method": "GET",
 	"headers": {
-		"x-rapidapi-key": "72ec3ec64dmsh3a185f201e13e83p1fff16jsn8100cc7ea96c",
-		"x-rapidapi-host": "yahoo-weather5.p.rapidapi.com"
+		"x-rapidapi-key": key,
+		"x-rapidapi-host": url
 	}
 })
 .then(response => response.json())
 .then(response => {
-	console.log(response);
+	console.log(response.current_observation.atmosphere.humidity);
     
 })
 .catch(err => {
