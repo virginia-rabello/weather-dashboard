@@ -19,24 +19,35 @@
             <form id="user-form">
                 <div class="mb-3 user-form">
                     <label for="cityInput" class="form-label">Search for a City:</label>
-                    <input class="form-control" type="text" placeholder="City name" aria-label="city name">
+                    <input id="form" class="form-control" type="text" placeholder="City name" aria-label="city name">
                 </div>
             </form>
                 <div class="d-grid gap-2">
-                    <button class="btn btn-primary btn-lg" type="button">Search</button>
+                    <button id="search" class="btn btn-primary btn-lg" type="button">Search</button>
                 </div>
             </div>
             <div class="col-12 col-md-8 card align-content">
-                <div class="col-12 col-md-12 card">
-                     
+                <div id="cityInfoDiv" class="col-12 col-md-12 card flex">
+                    <div class="inline">
+                     <h2 id="cityInfo"></h2><h3 id="currentDate"></h3>
+                    </div>
+                     <p id="temp"></p>
+                     <p id="wind"></p>
+                     <p id="humi"></p>
+                     <div class="inline">
+                     <p id="uv"></p><span id="uvIndex"></span>
+                    </div>
                 </div>
-                <div class="col-12 col-md-12 card space-between">
+                <div id="cityForecast" class="col-12 col-md-12 card space-between">
                    
                 </div>
             </div>
             
        </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>    
 <script type='text/javascript' src='./assets/js/config.js'></script>
 <script src="./assets/js/script.js"></script>
 </body>

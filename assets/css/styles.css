@@ -20,5 +20,23 @@ header {
     margin-top: 1%;
 }
 
+.inline {
+    display: flex;
+    }
 
+body div h3 {
+    font-size: 1.5vw;
+    margin-top: 7px;
+    margin-left: 15px;
+    color: rgb(88, 87, 87);
+    font-style: italic;
+}
+
+body div span {
+    margin-left: 10px;
+    font-size: larger;
+}
+body div p {
+    font-size: larger;
+}
 
