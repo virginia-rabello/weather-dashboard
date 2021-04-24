@@ -1,6 +1,6 @@
 var key = config.key;
 var url = config.url;
-var cityInfoDiv = document.querySelector("#cityInfoDiv");
+var cityIcon = document.querySelector("#icon");
 var cityForecast = document.querySelector("#cityForecast");
 var cityTarget = "";
 var cities = [];
@@ -34,7 +34,13 @@ var sameCityDetector = function (city){
       }
     }
     return push;
-}  
+} 
+
+var generateIconURL = function (code){
+  
+    var url = 'http://openweathermap.org/img/wn/'+ code +'@2x.png';
+    return url;
+}
 
 var getCoordinates = function (city){
 fetch("https://yahoo-weather5.p.rapidapi.com/weather?location="+ city +"&format=json&u=f", {
@@ -85,6 +91,16 @@ fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+ lat +"&lon="+ long
     var cityUV= document.getElementById("uv");
     var date = new Date(response.current.dt * 1000);
     var datePlace = document.getElementById("currentDate");
+    var icon = {
+        id:response.current.weather[0].id,
+        code:response.current.weather[0].icon
+    }
+    var URLicon = generateIconURL(icon.code);
+    cityIcon.style.width = '120px';
+    cityIcon.style.height = '120px';
+    cityIcon.style.marginLeft = '100px';
+    cityIcon.style.marginTop = '20px';
+    cityIcon.src = URLicon;
     cityH2.innerHTML = cityTarget;
     datePlace.innerHTML = date;
     cityTemp.innerHTML = temp;
