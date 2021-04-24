@@ -3,6 +3,38 @@ var url = config.url;
 var cityInfoDiv = document.querySelector("#cityInfoDiv");
 var cityForecast = document.querySelector("#cityForecast");
 var cityTarget = "";
+var cities = [];
+var lastSearch = "";
+
+var saveCities = function() {
+    localStorage.setItem("cities", JSON.stringify(cities));
+    localStorage.setItem("lastCity", JSON.stringify(lastSearch));
+  };
+
+var loadCities = function() {
+    if(localStorage.getItem("cities") != null){
+    cities = JSON.parse(localStorage.getItem("cities")); 
+    } 
+    else {
+        cities = [];
+    }
+    lastSearch = JSON.parse(localStorage.getItem("lastCity"));
+};
+
+var sameCityDetector = function (city){
+    var push = true;
+    if(cities){
+        if(cities.length>0){
+         cities.forEach(element => {
+            if(city === element){
+                push = false;
+            }
+                       
+        });
+      }
+    }
+    return push;
+}  
 
 var getCoordinates = function (city){
 fetch("https://yahoo-weather5.p.rapidapi.com/weather?location="+ city +"&format=json&u=f", {
@@ -15,7 +47,14 @@ fetch("https://yahoo-weather5.p.rapidapi.com/weather?location="+ city +"&format=
 .then(response => response.json())
 .then(response => {
     console.log(response);
-	cityTarget = response.location.city;
+    cityTarget = response.location.city;
+    var okPush = sameCityDetector(cityTarget);
+    console.log(okPush);
+    if(okPush){
+    cities.push(cityTarget);
+    }
+    lastSearch = cityTarget;
+    saveCities();
     var lat = response.location.lat;
     var long = response.location.long;
     searchCity(lat, long);
@@ -46,7 +85,6 @@ fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+ lat +"&lon="+ long
     var cityUV= document.getElementById("uv");
     var date = new Date(response.current.dt * 1000);
     var datePlace = document.getElementById("currentDate");
-    console.log(cityH2);
     cityH2.innerHTML = cityTarget;
     datePlace.innerHTML = date;
     cityTemp.innerHTML = temp;
@@ -54,7 +92,7 @@ fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+ lat +"&lon="+ long
     cityHumidity.innerHTML = humidity;
     cityUV.innerHTML = uvText;
     uvSpan.textContent = uvIndex;
-
+    
     	
     
 })
@@ -73,5 +111,10 @@ var buttonHandler = function(event){
 
 }
 
+loadCities();
+if(!lastSearch){
+    lastSearch = "Austin";
+}
+getCoordinates(lastSearch);
 addEventListener("click", buttonHandler);
 
