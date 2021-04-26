@@ -177,16 +177,16 @@ var buttonHandler = function(event){
     console.log(target.type);
     if(target.type === "button" || target.type === "submit"){
     var city = document.getElementById("form").value;
-        if(target.id === "search"){
-            if(city){
+         if(city && target.id ==="search"){
                 getCoordinates(city);
-            
+                }
+         if(!city && target.id === "search"){
+                alert("Please, type a name of a city");
+            }
+         if(target.type === "submit") {
+                getCoordinates(target.id);
             }
         }
-        else {
-                getCoordinates(target.id);
-        }
-    }
     else {
         return null;
     }
