@@ -1,5 +1,6 @@
 var key = config.key;
 var url = config.url;
+var buttonsPlace = document.querySelector("#cityButtons");
 var cityIcon = document.querySelector("#icon");
 var cityForecast = document.querySelector("#cityForecast");
 var day1 = document.querySelector("#day1");
@@ -20,9 +21,13 @@ var saveCities = function() {
 var loadCities = function() {
     if(localStorage.getItem("cities") != null){
     cities = JSON.parse(localStorage.getItem("cities")); 
+    cities.forEach(element => {
+        createButton(buttonsPlace,element);        
+    });
     } 
     else {
-        cities = [];
+        
+        cities.splice(0,cities.length);
     }
     lastSearch = JSON.parse(localStorage.getItem("lastCity"));
 };
@@ -31,6 +36,17 @@ var dateFormat = function(date){
      var formated_date = date.getMonth()+1 + "/" + date.getDate() + 
     "/" + date.getFullYear();
     return formated_date;
+};
+
+var createButton = function(place, name){
+    var button = document.createElement("button");
+    button.id = name;
+    button.tagName = "cityButton";
+    button.classList.add('btn-secondary');
+    button.classList.add('btn');
+    button.classList.add('btn-lg');
+    button.innerHTML = name;
+    place.appendChild(button);
 };
 
 var sameCityDetector = function (city){
@@ -54,7 +70,7 @@ var calculateUV = function (UVindex){
         indexColor = "red";
     }
     else if(UVindex > 2 && UVindex < 6){
-        indexColor = "yellow";
+        indexColor = "darkorange";
     }
     else {
         indexColor = "green";
@@ -82,9 +98,11 @@ fetch("https://yahoo-weather5.p.rapidapi.com/weather?location="+ city +"&format=
     console.log(response);
     cityTarget = response.location.city;
     var okPush = sameCityDetector(cityTarget);
-    console.log(okPush);
+    
     if(okPush){
-    cities.push(cityTarget);
+         cities.push(cityTarget);
+         createButton(buttonsPlace,cityTarget);
+             
     }
     lastSearch = cityTarget;
     saveCities();
@@ -156,13 +174,22 @@ fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+ lat +"&lon="+ long
 }
 var buttonHandler = function(event){
     var target = event.target;
+    console.log(target.type);
+    if(target.type === "button" || target.type === "submit"){
     var city = document.getElementById("form").value;
-    if(target.id === "search"){
-        if(city){
-            getCoordinates(city);
+        if(target.id === "search"){
+            if(city){
+                getCoordinates(city);
+            
+            }
+        }
+        else {
+                getCoordinates(target.id);
         }
     }
-
+    else {
+        return null;
+    }
 }
 
 loadCities();
@@ -171,4 +198,5 @@ if(!lastSearch){
 }
 getCoordinates(lastSearch);
 addEventListener("click", buttonHandler);
+console.log(cities);
 
