@@ -12,6 +12,10 @@ Weather Dashboard is an application to show the weather conditions in a city, th
 
 Some screenshots:
 
+ps: The inicial screen simulates a start with your current location, but it was actually hard coded as Austin. 
+![Inicial screen](https://github.com/virginia-rabello/weather-dashboard/blob/main/assets/images/first-search.jpg)
+
+![After some searches](https://github.com/virginia-rabello/weather-dashboard/blob/main/assets/images/page-appearence.jpg)
 
 # Links:
 
