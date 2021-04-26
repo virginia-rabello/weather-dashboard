@@ -32,13 +32,19 @@ body div h3 {
     font-style: italic;
 }
 
+
 body div span {
+    border-radius: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
     margin-left: 10px;
-    font-size: larger;
+    margin-bottom: 10px;
+    font-size: 1.4vw;
+    color:white;
+    font-style: bold;
 }
 body div p {
     font-size: larger;
-    margin-left: 25px;
 }
  .margin {
      margin-left: 20px;
@@ -47,4 +53,48 @@ body div p {
  .icon {
     margin-left: 30%;
     margin-top: 20%;
+ }
+
+.daily-icons {
+    margin-left: 32%;
+    margin-top: 0%;
+    margin-bottom: 10%;
+    width: 50px;
+    height: 50px;
+}
+
+ body div img {
+    width: 120px;
+    height: 120px;
+    margin-left: 100px;
+    margin-top: 20px;
+ }
+
+ .daily-forecast{
+     justify-content: space-between;
+     
+ }
+ .week-day{
+     padding: 10px;
+    font-size: smaller;
+    text-align: center;
+    color: white;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 5px;
+    width: 19%;
+    background: rgb(3,4,110);
+    background: linear-gradient(180deg, rgb(19, 21, 180) 0%, rgba(115,29,201,1) 62%, rgba(231,137,5,1) 100%);
+ }
+ .week-day-middle {
+     margin-left: 0.5%;
+     margin-right: 0.5%;
+ }
+ .week-day-first{
+     margin-left: auto;
+     margin-right: 0.5%;
+ }
+ .week-day-last{
+    margin-right: auto;
+    margin-left: 0.5%;
  }
