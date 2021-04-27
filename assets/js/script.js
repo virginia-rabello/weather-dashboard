@@ -1,5 +1,12 @@
-var key = config.key;
-var url = config.url;
+var openAPI = "7951861efb0d32d8e1402779dabc1002";
+
+var config = {
+	
+		key:"72ec3ec64dmsh3a185f201e13e83p1fff16jsn8100cc7ea96c",
+		url: "yahoo-weather5.p.rapidapi.com"
+
+}
+
 var buttonsPlace = document.querySelector("#cityButtons");
 var cityIcon = document.querySelector("#icon");
 var cityForecast = document.querySelector("#cityForecast");
@@ -89,8 +96,8 @@ var getCoordinates = function (city){
 fetch("https://yahoo-weather5.p.rapidapi.com/weather?location="+ city +"&format=json&u=f", {
 	"method": "GET",
 	"headers": {
-		"x-rapidapi-key": key,
-		"x-rapidapi-host": url
+		"x-rapidapi-key": config.key,
+		"x-rapidapi-host": config.url
 	}
 })
 .then(response => response.json())
